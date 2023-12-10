@@ -4,9 +4,10 @@ print(torch.cuda.is_available())
 import os
 from dotenv import load_dotenv
 
-import openai
-print(openai.__version__)
+
 from openai import OpenAI
+# get version of OpenAI
+#print version of openai
 
 import torch
 import sklearn

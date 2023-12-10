@@ -17,7 +17,9 @@ import os
 import pickle
 from typing import Dict, List
 
-import openai
+from openai import OpenAI
+
+client = OpenAI()
 from tenacity import retry, stop_after_attempt, wait_fixed
 
 os.environ["OPENAI_API_KEY"] = "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"
@@ -60,7 +62,9 @@ class LLM_Chat:
                 {"role": "user", "content": <<<<<prompts_list>>>>},
             ]
         """
-        import openai
+        from openai import OpenAI
+        
+        client = OpenAI()
 
         if isinstance(prompts_list, str):
             role = self.role
@@ -113,7 +117,7 @@ class LLM_Chat:
         if functions is not None:
             kwargs["functions"] = functions
 
-        response = openai.ChatCompletion.create(**kwargs)
+        response = client.chat.completions.create(**kwargs)
 
         if return_str:
             response = response["choices"][0]["message"]["content"]
